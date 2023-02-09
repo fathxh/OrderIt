@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="row outer">
+    <div class="col-md-12">
+        <form class="m-5">
+          <h1 class="text-center">Add product</h1>
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" [(ngModel)]="pname" name="pname" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Product discription</label>
+            <input type="text" [(ngModel)]="discription" name="discription" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="text" [(ngModel)]="price" name="price" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Photo</label>
+            <input type="text" [(ngModel)]="photo" name="photo" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Expected Time</label>
+            <input type="text" [(ngModel)]="time" name="time" class="form-control">
+          </div>
+          <button (click)="addproduct()" class="btn btn-secondary mt-3">Add product</button>
+        </form>
+      </div>
+    </div>

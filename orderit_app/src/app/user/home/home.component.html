@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<mat-grid-list cols="4" rowHeight="500px" class="bg-secondary">  
+        <div class="container" *ngFor="let item of data">
+            <mat-grid-tile class="text-center">
+                    <mat-card class="example-card">
+                <mat-card-header >
+                  <div><h1 class="heading fw-bolder">{{item.productname}}</h1></div>
+                  
+                </mat-card-header>
+                <img mat-card-image style="height: 150px;width: 300px;" src="{{item.photo}}" alt="loading Photo..">
+                <mat-card-content>
+                  <p class="mt-3 fs-6">
+                   {{item.description}}<br>
+                  Restaurant: {{item.shop}}</p>
+                  <span>
+                    expected time {{item.time}}
+                   </span><br>
+                  <button mat-button class="btn btn-outline-warning mt-4 px-5" (click)="oder(item)">Oder</button>
+                </mat-card-content>
+                
+              </mat-card>  
+</mat-grid-tile>
+</div>
+ 
