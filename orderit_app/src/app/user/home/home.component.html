@@ -13,9 +13,10 @@
                    {{item.description}}<br>
                   Restaurant: {{item.shop}}</p>
                   <span>
-                    expected time {{item.time}}
+                    Expected time :{{item.time}}
                    </span><br>
-                  <button mat-button class="btn btn-outline-warning mt-4 px-5" (click)="oder(item)">Oder</button>
+                   <p class="mt-3 fs-5 fw-semibold">Price : {{item.price}}</p><br>
+                  <button mat-button class="btn btn-outline-warning px-5" (click)="oder(item)">Oder</button>
                 </mat-card-content>
                 
               </mat-card>  

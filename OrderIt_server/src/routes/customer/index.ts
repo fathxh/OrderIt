@@ -30,12 +30,14 @@ router.post('/order', (req: any, res: any, next: any) => {
                     if (document) {
                         orderModel.findOne({ customer: req.body.customer, shop: req.body.shop,item: req.body.item }).then((document) => {
                             if (document) {
-                                
-                        const result = {
-                            msg: "Order Already exist",
-                            data: document
-                        }
-                        res.json(result)
+                        orderModel.updateOne({customer: req.body.customer, shop: req.body.shop,item: req.body.item},{count:Number(req.body.count)+1,price:Number(req.body.price)*(Number(req.body.count)+1)}).then((doc)=>{
+                            const result = {
+                                msg: "Count updated successfully",
+                                data:doc
+                            }
+                            res.json(result)
+                        })      
+                        
                     }
                             else {
                                 const foodItem = req.body;

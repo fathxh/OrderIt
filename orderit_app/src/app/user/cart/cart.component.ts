@@ -14,7 +14,7 @@ export interface PeriodicElement {
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-  displayedColumns: string[] = ['productname', 'description', 'price','status','action'];
+  displayedColumns: string[] = ['productname', 'description', 'price','count','status','action'];
   dataSource:any
   constructor(private http:HttpClient){}
   user=JSON.parse(localStorage.getItem('name')||'')

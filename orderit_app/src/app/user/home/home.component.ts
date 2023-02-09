@@ -44,11 +44,14 @@ export class HomeComponent {
       shop:item.shop,
       phone,
       price:item.price,
-      ready:false
+      ready:false,
+      count:1
     }
     return this.http.post("http://localhost:3000/user/order",data)
     .subscribe((result:any)=>{     
-      alert(result.msg)      
+      alert(result.msg)   
+      console.log(result);
+         
     })
     
   }

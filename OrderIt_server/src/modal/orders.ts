@@ -13,7 +13,8 @@ const orderSchema = new schema({
     shop:String,
     phone:Number,
     price: Number,
-    ready:Boolean
+    ready:Boolean,
+    count:Number
 });
 
 export default model('Order', orderSchema);
