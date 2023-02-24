@@ -24,21 +24,18 @@ router.get('/listoders/:customer', (req: any, res: any, next: any) => {
 
 router.post('/order', (req: any, res: any, next: any) => {
     try {
-        orderModel.findOne({customer: req.body.customer}).then((document) => {
+        orderModel.findOne({ customer: req.body.customer }).then((document) => {
             if (document) {
-                orderModel.findOne({customer: req.body.customer, shop: req.body.shop }).then((document) => {
+                orderModel.findOne({ customer: req.body.customer, shop: req.body.shop }).then((document) => {
                     if (document) {
-                        orderModel.findOne({ customer: req.body.customer, shop: req.body.shop,item: req.body.item }).then((document) => {
+                        orderModel.findOne({ customer: req.body.customer, shop: req.body.shop, item: req.body.item }).then((document) => {
                             if (document) {
-                        orderModel.updateOne({customer: req.body.customer, shop: req.body.shop,item: req.body.item},{count:Number(req.body.count)+1,price:Number(req.body.price)*(Number(req.body.count)+1)}).then((doc)=>{
-                            const result = {
-                                msg: "Count updated successfully",
-                                data:doc
+                                return {
+                                    msg: "order Already Exist Check Your Cart",
+                                    data: document
+                                }
+
                             }
-                            res.json(result)
-                        })      
-                        
-                    }
                             else {
                                 const foodItem = req.body;
                                 orderModel.insertMany([foodItem]).then((document) => {
@@ -62,15 +59,15 @@ router.post('/order', (req: any, res: any, next: any) => {
                         });
                     }
                 });
-            }else{
+            } else {
                 const foodItem = req.body;
-                        orderModel.insertMany([foodItem]).then((document) => {
-                            const result = {
-                                msg: "Ordered successfully",
-                                data: document
-                            }
-                            res.json(result)
-                        });
+                orderModel.insertMany([foodItem]).then((document) => {
+                    const result = {
+                        msg: "Ordered successfully",
+                        data: document
+                    }
+                    res.json(result)
+                });
             }
         });
 
@@ -83,7 +80,7 @@ router.post('/order', (req: any, res: any, next: any) => {
 router.post('/orderdelete', (req: any, res: any, next: any) => {
     try {
         const items = req.body;
-        orderModel.deleteOne({ customer: items.customer,item:items.item,shop:items.shop })
+        orderModel.deleteOne({ customer: items.customer, item: items.item, shop: items.shop })
             .then((result) => {
                 res.json(result);
             })
@@ -93,4 +90,33 @@ router.post('/orderdelete', (req: any, res: any, next: any) => {
     }
 })
 
+router.post('/updateorder', (req: any, res: any, next: any) => {
+    try {
+        if(req.body.add===true){
+            orderModel.updateOne({ customer: req.body.customer, shop: req.body.shop, item: req.body.item }, { count: Number(req.body.count) + 1, totalprice: Number(req.body.price) * (Number(req.body.count) + 1) })
+        .then((doc) => {
+            const result = {
+                msg: "Count updated",
+                data: doc
+            }
+            res.json(result)
+        })
+        }else{
+            const count=Number(req.body.count) - 1
+            const price=Number(req.body.price) * (Number(req.body.count) - 1)
+            orderModel.updateOne({ customer: req.body.customer, shop: req.body.shop, item: req.body.item }, { count: count, totalprice:price})
+        .then((doc) => {
+            const result = {
+                msg: "Count updated",
+                data: doc
+            }
+            res.json(result)
+        })
+        }
+        
+    }
+    catch (err) {
+        next(err);
+    }
+})
 export default router;

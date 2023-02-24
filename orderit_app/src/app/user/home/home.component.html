@@ -2,12 +2,12 @@
 <mat-grid-list cols="4" rowHeight="500px" class="bg-secondary">  
         <div class="container" *ngFor="let item of data">
             <mat-grid-tile class="text-center">
-                    <mat-card class="example-card">
+                    <mat-card class="example-card card text-center">
                 <mat-card-header >
                   <div><h1 class="heading fw-bolder">{{item.productname}}</h1></div>
                   
                 </mat-card-header>
-                <img mat-card-image style="height: 150px;width: 300px;" src="{{item.photo}}" alt="loading Photo..">
+                <img mat-card-image class="image" style="height: 10vmax;width: 20vmax;" src="{{item.photo}}" alt="loading Photo..">
                 <mat-card-content>
                   <p class="mt-3 fs-6">
                    {{item.description}}<br>

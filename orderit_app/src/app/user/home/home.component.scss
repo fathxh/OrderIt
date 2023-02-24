@@ -1,16 +1,26 @@
 .example-card {
-    border-radius: 15px;
-    max-width: 400px;
-  }
-.text-center{
+  border-radius: 15px;
+  max-width: 400px;
+}
+
+.text-center {
   text-align: center;
   align-items: center;
 
 }
-.heading{
+
+.heading {
   text-shadow: 0px 0px 2px yellow;
-} 
-  .example-header-image {
-    // background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+}
+
+.example-header-image {
+  // background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.card:hover{
+  align-items: center;
+  height: 29vmax;
+  width: 21vmax;
+}
+

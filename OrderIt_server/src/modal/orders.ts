@@ -12,6 +12,7 @@ const orderSchema = new schema({
     },
     shop:String,
     phone:Number,
+    totalprice: Number,
     price: Number,
     ready:Boolean,
     count:Number

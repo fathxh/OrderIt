@@ -44,6 +44,7 @@ export class HomeComponent {
       shop:item.shop,
       phone,
       price:item.price,
+      totalprice:item.price,
       ready:false,
       count:1
     }
@@ -51,7 +52,7 @@ export class HomeComponent {
     .subscribe((result:any)=>{     
       alert(result.msg)   
       console.log(result);
-         
+      this.rout.navigateByUrl('user/cart')         
     })
     
   }

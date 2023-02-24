@@ -20,7 +20,7 @@ export class LoginComponent {
     this.service.login({ phone, password })
       .subscribe((user: any) => {
         if (user) {
-          alert(user.message)
+          // alert(user.message)
           localStorage.setItem("name", JSON.stringify(user.data[0].name))
           localStorage.setItem("admin", JSON.stringify(user.data[0].admin))
           localStorage.setItem("phone", JSON.stringify(user.data[0].phone))

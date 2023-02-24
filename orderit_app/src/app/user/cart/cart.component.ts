@@ -41,5 +41,38 @@ export class CartComponent {
         
       })
     }
-  }}
+  }
+  countdec(items:any){
+    const data={
+      add:false,
+      customer:this.user,
+      item:items.item,
+      shop:items.shop,
+      count:items.count,
+      price:items.price
+    }
+    this.http.post(`http://localhost:3000/user/updateorder`,data)
+      .subscribe((result)=>{
+        console.log(result);
+        location.reload()
+        
+      })
+  }
+  countinc(items:any){
+    const data={
+      add:true,
+      customer:this.user,
+      item:items.item,
+      shop:items.shop,
+      count:items.count,
+      price:items.price
+    }
+    this.http.post(`http://localhost:3000/user/updateorder`,data)
+      .subscribe((result)=>{
+        console.log(result);
+        location.reload()
+        
+      })
+  }
+}
 
