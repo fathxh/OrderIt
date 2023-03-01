@@ -15,7 +15,8 @@ const orderSchema = new schema({
     totalprice: Number,
     price: Number,
     ready:Boolean,
-    count:Number
+    count:Number,
+    paytype:String
 });
 
 export default model('Order', orderSchema);

@@ -11,13 +11,13 @@ export class HomeComponent {
   data:any
   constructor(private http:HttpClient,private rout:Router){}
   ngOnInit(){
-    const user=localStorage.getItem('name')
+    const user=localStorage.getItem('username')
     if(!user){    
       alert('Please Login Again')
       this.rout.navigateByUrl('')
     }else{
     this.getfooditems()
-    const name=JSON.parse(localStorage.getItem('name')||"")
+    const name=JSON.parse(localStorage.getItem('username')||"")
     this.http.get(`http://localhost:3000/user/listoders/${name}`)
     .subscribe((result:any)=>{
       result.forEach((element:any) => {
@@ -36,7 +36,7 @@ export class HomeComponent {
     })
   }
   oder(item:any){    
-    const customer=JSON.parse(localStorage.getItem('name')||'')
+    const customer=JSON.parse(localStorage.getItem('username')||'')
     const phone=JSON.parse(localStorage.getItem('phone')||'')
     const data={
       customer,
@@ -46,13 +46,17 @@ export class HomeComponent {
       price:item.price,
       totalprice:item.price,
       ready:false,
-      count:1
+      count:1,
+      paytype:"not defined"
     }
     return this.http.post("http://localhost:3000/user/order",data)
     .subscribe((result:any)=>{     
       alert(result.msg)   
       console.log(result);
       this.rout.navigateByUrl('user/cart')         
+    },(result:any)=>{
+      alert(result.msg)   
+      this.rout.navigateByUrl('user/cart')
     })
     
   }

@@ -12,7 +12,7 @@ export class LoginComponent {
   password = ""
   constructor(private rout: Router, private service: BackendService) { }
   ngOnInit(): void {
-    
+
   }
   login() {
     var phone = this.phone
@@ -21,13 +21,14 @@ export class LoginComponent {
       .subscribe((user: any) => {
         if (user) {
           // alert(user.message)
-          localStorage.setItem("name", JSON.stringify(user.data[0].name))
           localStorage.setItem("admin", JSON.stringify(user.data[0].admin))
           localStorage.setItem("phone", JSON.stringify(user.data[0].phone))
-          
-          if (user.data[0].admin==true) {
+
+          if (user.data[0].admin == true) {
+            localStorage.setItem("name", JSON.stringify(user.data[0].name))
             this.rout.navigateByUrl('shop')
           } else {
+            localStorage.setItem("username", JSON.stringify(user.data[0].name))
             this.rout.navigateByUrl('user')
           }
         } else {

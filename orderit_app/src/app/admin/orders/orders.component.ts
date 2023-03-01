@@ -6,6 +6,7 @@ export interface PeriodicElement {
   productname: string;
   description: number;
   price: number;
+  count: number;
 }
 @Component({
   selector: 'app-orders',
@@ -14,7 +15,7 @@ export interface PeriodicElement {
 })
 export class OrdersComponent {
 
-  displayedColumns: string[] = ['productname', 'description', 'price','action'];
+  displayedColumns: string[] = ['productname', 'description', 'price','count','action'];
   dataSource:any
   constructor(private http:HttpClient,private srv:AdminService){}
   user=JSON.parse(localStorage.getItem('name')||'')

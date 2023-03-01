@@ -17,7 +17,7 @@ export class CartComponent {
   displayedColumns: string[] = ['productname', 'description', 'price','count','status','action'];
   dataSource:any
   constructor(private http:HttpClient){}
-  user=JSON.parse(localStorage.getItem('name')||'')
+  user=JSON.parse(localStorage.getItem('username')||'')
   ngOnInit(){
     this.http.get(`http://localhost:3000/user/listoders/${this.user}`)
     .subscribe((result)=>{
@@ -41,6 +41,19 @@ export class CartComponent {
         
       })
     }
+  }
+  cashPay(items:any){
+    const data={
+      customer:this.user,
+      item:items.item,
+      shop:items.shop
+    }
+    this.http.post(`http://localhost:3000/user/cash`,data)
+      .subscribe((result)=>{
+        console.log(result);
+        location.reload()
+        
+      }) 
   }
   countdec(items:any){
     const data={

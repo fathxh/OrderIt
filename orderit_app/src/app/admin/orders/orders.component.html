@@ -1,34 +1,41 @@
-
 <app-navbar></app-navbar>
 <div class="container mt-3">
   <h1 class="text-center m-5 fs-2 fw-bolder heading">ORDERS</h1>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
 
-        <!--- Note that these columns can be defined in any order.
+    <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <ng-container matColumnDef="productname">
-          <th mat-header-cell *matHeaderCellDef>ProductName </th>
-          <td mat-cell *matCellDef="let element"> {{element.item}} </td>
-        </ng-container>
-      
-        
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Restaurant</th>
-          <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> price </th>
-          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let element"><div *ngIf="element.ready!=true"><button (click)="markdone(element)" class="btn btn-outline-success">Mark as done</button></div></td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    <ng-container matColumnDef="productname" class="">
+      <th mat-header-cell *matHeaderCellDef>ProductName </th>
+      <td mat-cell *matCellDef="let element"> {{element.item}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>customer</th>
+      <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> price </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalprice}} </td>
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef> count </th>
+      <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.ready!=true"><button (click)="markdone(element)" class="btn btn-outline-success">Mark as
+            done</button></div><span *ngIf="element.ready==true" class="fw-semibold">Payment Type : <span
+            class="bg-warning">{{element.paytype}}</span></span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

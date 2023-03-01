@@ -2,7 +2,7 @@
 <div class="container mt-3">
   <h1 class="text-center m-5 fs-2 fw-bolder heading">CART</h1>
   <p class=" text-end text-light shadow">You can add count from home page</p>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
         <ng-container matColumnDef="productname">
@@ -19,16 +19,36 @@
           <td mat-cell *matCellDef="let element">{{element.totalprice}}</td>
         </ng-container>
         <ng-container matColumnDef="count">
-          <th mat-header-cell *matHeaderCellDef> Count </th>
-          <td mat-cell *matCellDef="let element"><span *ngIf="element.count!=1"><button (click)="countdec(element)" class="btn btn-light">-</button></span>{{element.count}}<button (click)="countinc(element)" class="btn btn-light">+</button></td>
+          <th class="text-center" mat-header-cell *matHeaderCellDef> Count </th>
+          <td class="text-center" mat-cell *matCellDef="let element"><span *ngIf="element.count!=1" class="pe-2"><button (click)="countdec(element)" class="btn btn-outline-secondary text-warning px-2 py-0">-</button></span>{{element.count}}<span class="ps-2"><button (click)="countinc(element)" class="btn btn-outline-secondary text-warning px-2 py-0">+</button></span></td>
         </ng-container>
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef> status </th>
-          <td mat-cell *matCellDef="let element" ><span *ngIf="element.ready==true" class="text-success">Ready to Deliver</span><span *ngIf="element.ready!=true" class="text-warning">Under Prepration</span></td>
+          <th class="text-center" mat-header-cell *matHeaderCellDef> status </th>
+          <td class="text-center" mat-cell *matCellDef="let element" ><span *ngIf="element.ready==true" class="text-success">Ready to Deliver</span><span *ngIf="element.ready!=true" class="text-warning">Under Prepration</span></td>
         </ng-container>
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let element"><span *ngIf="element.ready!=true"><button (click)="delete(element)" class="btn btn-danger">Cancel The Order</button></span><span *ngIf="element.ready==true"><button (click)="delete(element)" class="btn btn-success">Mark As Picked</button></span></td>
+          <th class="text-center" mat-header-cell *matHeaderCellDef>Actions</th>
+            <td class="text-center" mat-cell *matCellDef="let element"><span *ngIf="element.ready!=true"><button (click)="delete(element)" class="btn btn-danger">Cancel The Order</button></span><span *ngIf="element.ready==true && element.paytype!='CASH'">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Make payment
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Select your payment type</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer m-auto">
+                        <button type="button" class="btn btn-warning " data-bs-dismiss="modal" (click)="cashPay(element)">Pay as Cash</button>
+                        <button type="button" class="btn btn-warning">Online Payment</button>
+                      </div>
+                    </div>
+                  </div>
+                </div></span></td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

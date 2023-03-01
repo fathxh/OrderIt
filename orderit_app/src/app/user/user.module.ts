@@ -7,6 +7,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
 import {MatTableModule} from '@angular/material/table';
+import { PaytypeComponent } from './paytype/paytype.component';
 
 
 
@@ -15,7 +16,8 @@ import {MatTableModule} from '@angular/material/table';
   declarations: [
     HomeComponent,
     NavbarComponent,
-    CartComponent
+    CartComponent,
+    PaytypeComponent
   ],
   imports: [
     CommonModule,

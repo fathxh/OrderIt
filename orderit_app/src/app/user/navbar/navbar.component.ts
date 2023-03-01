@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   name:any
 ngOnInit(){
-  this.name=JSON.parse(localStorage.getItem('name')||'')
+  this.name=JSON.parse(localStorage.getItem('username')||'')
   
 }
 constructor(private rout:Router){}
 logout(){
-  localStorage.removeItem('name')
+  localStorage.removeItem('username')
   localStorage.removeItem('admin')
   localStorage.removeItem('phone')
   this.rout.navigateByUrl('')

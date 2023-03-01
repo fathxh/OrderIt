@@ -30,11 +30,11 @@ router.post('/order', (req: any, res: any, next: any) => {
                     if (document) {
                         orderModel.findOne({ customer: req.body.customer, shop: req.body.shop, item: req.body.item }).then((document) => {
                             if (document) {
-                                return {
+                                const result= {
                                     msg: "order Already Exist Check Your Cart",
                                     data: document
                                 }
-
+                                res.json(result)
                             }
                             else {
                                 const foodItem = req.body;
@@ -115,6 +115,20 @@ router.post('/updateorder', (req: any, res: any, next: any) => {
         }
         
     }
+    catch (err) {
+        next(err);
+    }
+})
+router.post('/cash', (req: any, res: any, next: any) => {
+    try {
+            orderModel.updateOne({ customer: req.body.customer, shop: req.body.shop, item: req.body.item }, { paytype:"CASH" })
+        .then((doc) => {
+            const result = {
+                data: doc
+            }
+            res.json(result)
+        })
+        }
     catch (err) {
         next(err);
     }
