@@ -15,7 +15,7 @@ export interface PeriodicElement {
 })
 export class OrdersComponent {
 
-  displayedColumns: string[] = ['productname', 'description', 'price','count','action'];
+  displayedColumns: string[] = ['productname', 'description', 'price','count','action','action2'];
   dataSource:any
   constructor(private http:HttpClient,private srv:AdminService){}
   user=JSON.parse(localStorage.getItem('name')||'')
@@ -35,6 +35,23 @@ export class OrdersComponent {
       }
       location.reload()      
     })
+  }
+  delete(items:any){
+    var msg:any
+    items.ready==true?msg="mark":msg="Cancel"
+    const con=confirm('do you want to '+msg+' '+items.item)
+    if(con){
+      const data={
+        customer:items.customer,
+        item:items.item,
+        shop:items.shop
+      }
+      this.http.post(`http://localhost:3000/user/orderdelete`,data)
+      .subscribe((result)=>{
+        console.log(result);
+        location.reload()
+        })
+    }
   }
 
 }

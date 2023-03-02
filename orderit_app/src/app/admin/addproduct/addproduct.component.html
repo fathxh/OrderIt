@@ -2,7 +2,7 @@
 <div class="row outer">
     <div class="col-md-12">
         <form class="m-5">
-          <h1 class="text-center">Add product</h1>
+          <h1 class="text-center text-center m-5 fs-2 fw-bolder">Add product</h1>
           <div class="form-group">
             <label>Product Name</label>
             <input type="text" [(ngModel)]="pname" name="pname" class="form-control">
@@ -23,7 +23,7 @@
             <label>Expected Time</label>
             <input type="text" [(ngModel)]="time" name="time" class="form-control">
           </div>
-          <button (click)="addproduct()" class="btn btn-secondary mt-3">Add product</button>
+          <button (click)="addproduct()" class="btn btn-secondary mt-3 text-warning">Add product</button>
         </form>
       </div>
     </div>

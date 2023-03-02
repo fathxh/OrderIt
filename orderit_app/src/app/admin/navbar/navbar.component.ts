@@ -7,12 +7,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private rout:Router){}
+  constructor(private rout:Router){
+  }
+  name:any
+  ngOnInit(){
+    this.name=JSON.parse(localStorage.getItem('name')||'')
+    
+  }
   logout(){
+    const logout=confirm('PRESS OK TO LOGOUT')
+    if(logout){
     localStorage.removeItem('name')
     localStorage.removeItem('admin')
     localStorage.removeItem('phone')
     this.rout.navigateByUrl('')
-
+    }
   }
 }

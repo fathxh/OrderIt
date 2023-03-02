@@ -17,16 +17,7 @@ export class HomeComponent {
       this.rout.navigateByUrl('')
     }else{
     this.getfooditems()
-    const name=JSON.parse(localStorage.getItem('username')||"")
-    this.http.get(`http://localhost:3000/user/listoders/${name}`)
-    .subscribe((result:any)=>{
-      result.forEach((element:any) => {
-        if(element.ready==true){
-          alert('Orders Status Updated,Check Your Cart')
-        }
-      });
-      console.log("reds",result);
-    })
+    
     }
   }
   getfooditems(){
@@ -47,7 +38,7 @@ export class HomeComponent {
       totalprice:item.price,
       ready:false,
       count:1,
-      paytype:"not defined"
+      paytype:"Not Selected"
     }
     return this.http.post("http://localhost:3000/user/order",data)
     .subscribe((result:any)=>{     

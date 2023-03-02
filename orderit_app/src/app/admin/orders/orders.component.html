@@ -34,6 +34,12 @@
             class="bg-warning">{{element.paytype}}</span></span>
       </td>
     </ng-container>
+    <ng-container matColumnDef="action2">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.ready==true"><button (click)="delete(element)" class="btn btn-outline-danger">Mark Delivered</button></div>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

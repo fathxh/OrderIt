@@ -8,7 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
 import {MatTableModule} from '@angular/material/table';
 import { PaytypeComponent } from './paytype/paytype.component';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -23,7 +23,8 @@ import { PaytypeComponent } from './paytype/paytype.component';
     CommonModule,
     MatCardModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatBadgeModule
   ],exports:[
     UserRoutingModule
   ]
